@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'home',
     pathMatch: 'full'
-  },
+  },  
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },  
+  { path: 'viewAllJobs', loadChildren: './view-all-jobs/view-all-jobs.module#ViewAllJobsPageModule', canActivate: [AuthGuard] },
+  
+  { path: 'login', loadChildren:'./login/login.module#LoginPageModule', canActivate: [AuthGuard] },
+  
+  { path: 'end-job', loadChildren: './end-job/end-job.module#EndJobPageModule', canActivate: [AuthGuard]},
+  
+  { path: 'view-profile', loadChildren: './view-profile/view-profile.module', canActivate:[AuthGuard] }
+
 ];
 
 @NgModule({

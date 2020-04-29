@@ -1,5 +1,7 @@
 {
   "name": "RyuCleanerApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
