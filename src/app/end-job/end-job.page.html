@@ -10,10 +10,13 @@
   </ion-item>
 
   <ion-button ion-button full icon-left (click)='scanCode()' ><ion-icon name ='qr-scanner'></ion-icon>Scan Code</ion-button> 
+  <ion-button ion-button full icon-left (click)="endJobTemp($event)"> End Job</ion-button>
   
   <ion-card *ngIf="scannedCode">
     <ion-card-content>
       Result from Scan: {{scannedCode}}
     </ion-card-content>
+
+    
   </ion-card>
 </ion-content>
