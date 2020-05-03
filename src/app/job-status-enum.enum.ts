@@ -1,0 +1,6 @@
+export enum JobStatusEnum {
+    COMPLETED = "COMPLETED",
+    CLEANING_IN_PROGRESS = "CLEANING_IN_PROGRESS",
+    PENDING ="PENDING",
+    ACCEPTED = "ACCEPTED",
+}

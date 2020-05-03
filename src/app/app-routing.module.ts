@@ -23,10 +23,8 @@ const routes: Routes = [
     path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule', canActivate: [AuthGuard]
 
   },
-  {
-    path: 'jobs',
-    loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsPageModule)
-  },
+  
+  { path: 'jobs', loadChildren:'./jobs/jobs.module#JobsPageModule' },
   {
     path: 'view-all-past-jobs',
     loadChildren: () => import('./view-all-past-jobs/view-all-past-jobs.module').then(m => m.ViewAllPastJobsPageModule)

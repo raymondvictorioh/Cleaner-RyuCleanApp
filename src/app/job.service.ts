@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 import { UtilityService } from './utility.service';
 import { Job } from './job';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
@@ -14,11 +15,36 @@ const httpOptions = {
 })
 export class JobService {
 
+
   baseUrl: string;
+  
 
   constructor(private httpClient: HttpClient,
-    private utilityService: UtilityService) {
-    this.baseUrl = this.utilityService.getRootPath() + "Job";
+    private utilityService: UtilityService) { 
+      this.baseUrl = this.utilityService.getRootPath() + "Job";
+    }
+
+
+
+    getJobByJobId(jobId: number): Observable<any>{
+      return this.httpClient.get<any>(this.baseUrl + "/retrieveJob/" + jobId + "?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()).pipe(
+        catchError(this.handleError)
+      );
+    }  
+
+    updateJob(jobToUpdate: Job): Observable<any>
+  {
+    let updateJobReq = {
+      "username": this.utilityService.getUsername(),
+      "password": this.utilityService.getPassword(),
+      "job": jobToUpdate
+    };
+
+    return this.httpClient.post<any>(this.baseUrl, updateJobReq, httpOptions).pipe
+		(
+			catchError(this.handleError)
+		);
+
   }
 
   getScheduledJobs(): Observable<any> {
