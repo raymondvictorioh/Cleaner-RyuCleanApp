@@ -56,8 +56,9 @@ export class EndJobPage implements OnInit {
     )
 
     this.jobToEnd.jobStatusEnum = JobStatusEnum.COMPLETED;
-    //this.jobToEnd.jobRating = scannedcode.split(" ").[1];
-    //this.jobToEnd.jobFeedback = scannedcode.split(" ").[2];
+    let componentsOfJob = this.scannedCode.split(",");
+    this.jobToEnd.jobRating = componentsOfJob[1];
+    this.jobToEnd.jobFeedback = componentsOfJob[2];
 
     this.jobService.updateJob(this.jobToEnd).subscribe(
       response => {

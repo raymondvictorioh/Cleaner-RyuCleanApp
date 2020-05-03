@@ -28,6 +28,11 @@ export class AppComponent implements OnInit {
       icon: 'settings'
     },
     {
+      title: 'End Job',
+      url: 'end-job',
+      icon: 'barcode-outline'
+    },
+    {
       title: 'Announcements',
       url: 'announcements',
       icon: 'notifications'
