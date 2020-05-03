@@ -19,7 +19,7 @@ const routes: Routes = [
           children: [
             {
               path: '',
-              loadChildren: './view-all-jobs/view-all-jobs.module#ViewAllJobsPageModule'
+              loadChildren: '../view-all-jobs/view-all-jobs.module#ViewAllJobsPageModule'
             }
           ]
         },
