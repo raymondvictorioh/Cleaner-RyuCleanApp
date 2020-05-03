@@ -19,7 +19,7 @@ const routes: Routes = [
           children: [
             {
               path: '',
-              loadChildren: '../view-all-jobs/view-all-jobs.module#ViewAllJobsPageModule'
+              loadChildren: './view-all-jobs/view-all-jobs.module#ViewAllJobsPageModule'
             }
           ]
         },
@@ -28,13 +28,15 @@ const routes: Routes = [
           children: [
             {
               path: '',
-              loadChildren: '../view-all-past-jobs/view-all-past-jobs.module#ViewAllPastJobsPageModule'
+              loadChildren: './view-all-past-jobs/view-all-past-jobs.module#ViewAllPastJobsPageModule'
             }
           ]
         }
       ]
   }
 ];
+
+
 
 
 @NgModule({
