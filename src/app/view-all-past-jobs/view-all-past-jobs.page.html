@@ -1,19 +1,13 @@
 <ion-header>
   <ion-toolbar>
-
-    <ion-title>
-      Scheduled
-    </ion-title>
+    <ion-title>History</ion-title>
   </ion-toolbar>
 </ion-header>
-
-
-
 
 <ion-content>
 
   <ion-item *ngIf="jobs!=null &&jobs.length==0">
-    No Scheduled Orders.
+    No Completed Orders.
   </ion-item>
 
   <ion-card *ngFor="let job of jobs">

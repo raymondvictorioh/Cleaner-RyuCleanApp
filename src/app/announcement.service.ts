@@ -5,35 +5,34 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { UtilityService } from './utility.service';
-import { Job } from './job';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
+
 @Injectable({
   providedIn: 'root'
 })
-export class JobService {
+export class AnnouncementService {
+
 
   baseUrl: string;
 
   constructor(private httpClient: HttpClient,
     private utilityService: UtilityService) {
-    this.baseUrl = this.utilityService.getRootPath() + "Job";
+    this.baseUrl = this.utilityService.getRootPath() + "Announcement";
   }
 
-  getScheduledJobs(): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveJobsByJobStatusEnumForCleaners?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()
-      + "&cleanerId=" + this.utilityService.getCurrentCleaner().cleanerId + "&jobStatus=ACCEPTED").pipe(
-        catchError(this.handleError)
-      );
+  getAnnouncements(): Observable<any> {
+    console.log(this.utilityService.getUsername());
+    console.log(this.utilityService.getPassword());
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllAnnouncements?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()).pipe(
+
+      catchError(this.handleError)
+    );
+
   }
 
-  getPastJobs(): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveJobsByJobStatusEnumForCleaners?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()
-      + "&cleanerId=" + this.utilityService.getCurrentCleaner().cleanerId + "&jobStatus=COMPLETED").pipe(
-        catchError(this.handleError)
-      );
-  }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
@@ -49,6 +48,4 @@ export class JobService {
 
     return throwError(errorMessage);
   }
-
-
 }

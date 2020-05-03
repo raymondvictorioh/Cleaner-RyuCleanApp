@@ -17,7 +17,7 @@ export class Cleaner {
     fullName: string;
     directMessage: string;
 
-    constructor(cleanerId?: number, jobs?: Job[], firstName?: string, lastName?: string, username?: string, password?: string, bankAccountNumber?: string,
+    constructor(cleanerId?: number, jobs?: Job[], totalNumCleaningServicesProvided?: number, firstName?: string, lastName?: string, username?: string, password?: string, bankAccountNumber?: string,
         accumulatedRating?: number, gender?: GenderEnum, fullName?: string) {
         this.cleanerId = cleanerId;
         this.jobs = jobs;
@@ -29,5 +29,6 @@ export class Cleaner {
         this.accumulatedRating = accumulatedRating;
         this.gender = gender;
         this.fullName = fullName;
+        this.totalNumCleaningServicesProvided = totalNumCleaningServicesProvided;
     }
 }

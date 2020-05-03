@@ -1,9 +1,70 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="titleicon">
+      <img alt="logo" id="header_logo" height="40" float-left src="assets/cleanerlogo.png">
+    </div>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
 
+  <div id="profile-bg"></div>
+  <div id="content">
+    <div id="profile-info">
+      <img id="profile-image" src="../../assets/avatar.jpg">
+      <h3 id="profile-name">{{this.utilityService.getCurrentCleaner().firstName}}
+        {{this.utilityService.getCurrentCleaner().lastName}}
+      </h3>
+    </div>
+  </div>
+  <div id="profile-bgs"></div>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+
+        <ion-item>
+          <ion-label>Number of Scheduled Jobs</ion-label>
+          <ion-badge slot="end">{{numScheduledJobs}} </ion-badge>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Number of Completed Jobs</ion-label>
+          <ion-badge slot="end">{{numCompletedJobs}}</ion-badge>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Average Rating</ion-label>
+          {{this.avgRating}} / 5
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button icon="home " shape="block" color="warning" fill="solid" block>Call HQ @
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+          <a href="tel:+1123-456-7890"></a>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+
+
+
+<ion-footer>
+
+  <ion-toolbar>
+
+  </ion-toolbar>
+
+</ion-footer>
