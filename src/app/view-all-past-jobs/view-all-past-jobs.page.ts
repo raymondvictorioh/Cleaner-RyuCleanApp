@@ -6,13 +6,13 @@ import { LoadingController, ModalController } from '@ionic/angular';
 // import { ViewJobDetailsPage } from '../view-job-details/view-job-details.page';
 import { DatePipe } from '@angular/common';
 // import { DateSettingModalPage } from "../date-setting-modal/date-setting-modal.page";
-
 @Component({
-  selector: 'app-view-all-jobs',
-  templateUrl: './view-all-jobs.page.html',
-  styleUrls: ['./view-all-jobs.page.scss'],
+  selector: 'app-view-all-past-jobs',
+  templateUrl: './view-all-past-jobs.page.html',
+  styleUrls: ['./view-all-past-jobs.page.scss'],
 })
-export class ViewAllJobsPage implements OnInit {
+export class ViewAllPastJobsPage implements OnInit {
+
   jobs: Job[];
   jobId: number;
   message: string;
@@ -33,7 +33,7 @@ export class ViewAllJobsPage implements OnInit {
   }
 
   refreshJobs() {
-    this.jobService.getScheduledJobs().subscribe(
+    this.jobService.getPastJobs().subscribe(
       response => {
         this.jobs = response.jobs;
         console.log(this.jobs.length);

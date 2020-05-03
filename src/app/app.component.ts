@@ -18,19 +18,19 @@ export class AppComponent implements OnInit {
       icon: 'home'
     },
     {
-      title: 'View All Jobs',
-      url: '/viewAllJobs',
-      icon: 'arrow-forward'
+      title: 'Jobs',
+      url: '/jobs',
+      icon: 'list-circle'
     },
     {
-      title: 'End Job',
-      url: '/end-job',
-      icon: 'arrow-forward'
+      title: 'Settings',
+      url: '/settings',
+      icon: 'settings'
     },
     {
-      title: 'View Profile',
-      url: '/view-profile',
-      icon: 'arrow-forward'
+      title: 'Announcements',
+      url: 'announcements',
+      icon: 'notifications'
     }
 
   ];

@@ -6,11 +6,17 @@ import { catchError } from 'rxjs/operators';
 
 import { UtilityService } from './utility.service';
 import { Job } from './job';
+<<<<<<< HEAD
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
+=======
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+}
+>>>>>>> b325e3a928810ff8426bc195a458a868cf59a951
 @Injectable({
   providedIn: 'root'
 })
@@ -30,21 +36,6 @@ export class JobService {
       return this.httpClient.get<any>(this.baseUrl + "/retrieveJob/" + jobId + "?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()).pipe(
         catchError(this.handleError)
       );
-    }
-
-    private handleError(error: HttpErrorResponse) {
-      let errorMessage: string = "";
-  
-      if (error.error instanceof ErrorEvent) {
-        errorMessage = "An unknown error has occurred: " + error.error.message;
-      }
-      else {
-        errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error.message}`;
-      }
-  
-      console.error(errorMessage);
-  
-      return throwError(errorMessage);
     }  
 
     updateJob(jobToUpdate: Job): Observable<any>
@@ -61,4 +52,35 @@ export class JobService {
 		);
 
   }
+
+  getScheduledJobs(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveJobsByJobStatusEnumForCleaners?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()
+      + "&cleanerId=" + this.utilityService.getCurrentCleaner().cleanerId + "&jobStatus=ACCEPTED").pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getPastJobs(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveJobsByJobStatusEnumForCleaners?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()
+      + "&cleanerId=" + this.utilityService.getCurrentCleaner().cleanerId + "&jobStatus=COMPLETED").pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: string = "";
+
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = "An unknown error has occurred: " + error.error.message;
+    }
+    else {
+      errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error.message}`;
+    }
+
+    console.error(errorMessage);
+
+    return throwError(errorMessage);
+  }
+
+
 }

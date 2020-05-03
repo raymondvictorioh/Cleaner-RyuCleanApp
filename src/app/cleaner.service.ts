@@ -19,7 +19,7 @@ export class CleanerService {
 
   constructor(private httpClient: HttpClient,
     private utilityService: UtilityService) {
-    this.baseUrl = this.utilityService.getRootPath() + "Customer";
+    this.baseUrl = this.utilityService.getRootPath() + "Cleaner";
   }
 
   cleanerLogin(username: string, password: string): Observable<any> {
@@ -41,4 +41,22 @@ export class CleanerService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
+  retrieveCleanerByCleanerId(cleanerId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveCleaner/" + cleanerId + "?username=" + this.utilityService.getCurrentCleaner().username + "&password=" + this.utilityService.getCurrentCleaner().password).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateCleaner(cleanerToUpdate: Cleaner): Observable<any> {
+    let updateCleanerReq = {
+      "username": this.utilityService.getCurrentCleaner().username,
+      "password": this.utilityService.getPassword(),
+      "cleaner": cleanerToUpdate
+    };
+    return this.httpClient.post<any>(this.baseUrl, updateCleanerReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 }

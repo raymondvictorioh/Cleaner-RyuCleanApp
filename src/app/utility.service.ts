@@ -67,6 +67,4 @@ export class UtilityService {
     return sessionStorage.cleanerId;
   }
 
-
-
 }
