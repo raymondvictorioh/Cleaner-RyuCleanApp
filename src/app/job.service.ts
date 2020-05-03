@@ -6,17 +6,10 @@ import { catchError } from 'rxjs/operators';
 
 import { UtilityService } from './utility.service';
 import { Job } from './job';
-<<<<<<< HEAD
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
-
-=======
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
->>>>>>> b325e3a928810ff8426bc195a458a868cf59a951
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +17,7 @@ export class JobService {
 
 
   baseUrl: string;
+  
 
   constructor(private httpClient: HttpClient,
     private utilityService: UtilityService) { 
