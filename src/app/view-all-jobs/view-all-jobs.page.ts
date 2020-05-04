@@ -68,7 +68,6 @@ export class ViewAllJobsPage implements OnInit {
         console.log(this.currentOrder);
         console.log(this.currentOrder.notes);
         console.log(this.currentOrder.zipcode);
-
       },
       error => {
         console.log('********* ViewScheduledOrdePage ' + error);
