@@ -85,8 +85,7 @@ export class EndJobPage implements OnInit {
   }
 
   endJobTemp(event){
-    //this.utilityService.setUsername("username");
-    //this.utilityService.setPassword("password");
+   
     
     this.jobService.getJobByJobId(2).subscribe(
       response => {
@@ -102,10 +101,10 @@ export class EndJobPage implements OnInit {
     this.jobToEnd.jobFeedback = "great stuff";
     this.currentCleaner = this.utilityService.getCurrentCleaner();
    
-    console.log(this.currentCleaner.totalNumCleaningServicesProvided);
+    //console.log(this.currentCleaner.totalNumCleaningServicesProvided);
     
-    console.log(((this.currentCleaner.accumulatedRating*this.currentCleaner.totalNumCleaningServicesProvided) + this.jobToEnd.jobRating)/(this.currentCleaner.totalNumCleaningServicesProvided +1));
-    this.currentCleaner.accumulatedRating = ((this.currentCleaner.accumulatedRating*this.currentCleaner.totalNumCleaningServicesProvided) + this.jobToEnd.jobRating)/(this.currentCleaner.totalNumCleaningServicesProvided +1);
+    //console.log(((this.currentCleaner.accumulatedRating*this.currentCleaner.totalNumCleaningServicesProvided) + this.jobToEnd.jobRating)/(this.currentCleaner.totalNumCleaningServicesProvided +1));
+    this.currentCleaner.accumulatedRating = this.jobToEnd.jobRating + this.currentCleaner.accumulatedRating;
     this.currentCleaner.totalNumCleaningServicesProvided++;
     this.cleaner = this.currentCleaner
     this.cleanerService.updateCleaner(this.cleaner).subscribe(

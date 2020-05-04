@@ -71,6 +71,7 @@ export class ViewAllJobsPage implements OnInit {
       }
     )
     console.log(this.currentOrder== null );
+    console.log(this.currentOrder.zipcode);
     //let customerName:string = 
     //let customerAddress: string = job.order.zipcode;
     //console.log(customerName);
