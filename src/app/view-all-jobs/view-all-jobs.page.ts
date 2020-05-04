@@ -24,7 +24,7 @@ export class ViewAllJobsPage implements OnInit {
   numberOfJobs: number;
   currentOrder: OrderEntity;
   currentOrderId: number;
-  constructor(private router: Router, private jobService: JobService, public loadingController: LoadingController, public modalController: ModalController, 
+  constructor(private router: Router, private jobService: JobService, public loadingController: LoadingController, public modalController: ModalController,
     public loadingCtrl: LoadingController,
     private alertController: AlertController,
     private orderEntityService: OrderEntityService) {
@@ -59,18 +59,22 @@ export class ViewAllJobsPage implements OnInit {
     return d.toString().replace('[UTC]', '');
   }
 
-  async presentAlert(job){
+  async presentAlert(job) {
     console.log(job.orderId);
     this.currentOrderId = 2;
     this.orderEntityService.getOrderByOrderId(this.currentOrderId).subscribe(
       response => {
         this.currentOrder = response.orderEntity;
+        console.log(this.currentOrder);
+        console.log(this.currentOrder.notes);
+        console.log(this.currentOrder.zipcode);
+
       },
       error => {
         console.log('********* ViewScheduledOrdePage ' + error);
       }
     )
-    console.log(this.currentOrder== null );
+    console.log(this.currentOrder == null);
     //let customerName:string = 
     //let customerAddress: string = job.order.zipcode;
     //console.log(customerName);
@@ -78,10 +82,10 @@ export class ViewAllJobsPage implements OnInit {
       header: 'Job Details',
       subHeader: 'Comments',
       message: 'Please leave a rating',
-      
+
     });
 
     await alert.present();
 
-    }
   }
+}
