@@ -27,7 +27,7 @@ export class JobService {
 
 
     getJobByJobId(jobId: number): Observable<any>{
-      return this.httpClient.get<any>(this.baseUrl + "/retrieveJob/" + jobId + "?username=" + this.utilityService.getUsername() + "&password=" + this.utilityService.getPassword()).pipe(
+      return this.httpClient.get<any>(this.baseUrl + "/retrieveJob/" + jobId + "?username=" + "username" + "&password=" + "password").pipe(
         catchError(this.handleError)
       );
     }  
@@ -35,8 +35,8 @@ export class JobService {
     updateJob(jobToUpdate: Job): Observable<any>
   {
     let updateJobReq = {
-      "username": this.utilityService.getUsername(),
-      "password": this.utilityService.getPassword(),
+      "username": "username",
+      "password": "password",
       "job": jobToUpdate
     };
 

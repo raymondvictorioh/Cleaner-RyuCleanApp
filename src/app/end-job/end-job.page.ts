@@ -4,6 +4,9 @@ import { Job } from '../job';
 import { JobService } from '../job.service';
 import { JobStatusEnum } from '../job-status-enum.enum';
 import { UtilityService } from '../utility.service';
+import { Cleaner } from '../cleaner';
+import { CleanerService } from '../cleaner.service';
+//import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-end-job',
@@ -20,10 +23,13 @@ export class EndJobPage implements OnInit {
   resultSuccess : boolean;
   resultError : boolean;
   message: string;
+  currentCleaner: Cleaner;
+  cleaner: Cleaner;
 
   constructor(private barcodeScanner: BarcodeScanner,
     private jobService: JobService,
-    private utilityService: UtilityService) { }
+    private utilityService: UtilityService,
+    private cleanerService: CleanerService) { }
 
   ngOnInit() {
 
@@ -79,8 +85,8 @@ export class EndJobPage implements OnInit {
   }
 
   endJobTemp(event){
-    this.utilityService.setUsername("username");
-    this.utilityService.setPassword("password");
+    //this.utilityService.setUsername("username");
+    //this.utilityService.setPassword("password");
     
     this.jobService.getJobByJobId(2).subscribe(
       response => {
@@ -94,6 +100,31 @@ export class EndJobPage implements OnInit {
     this.jobToEnd.jobStatusEnum = JobStatusEnum.COMPLETED;
     this.jobToEnd.jobRating = 5
     this.jobToEnd.jobFeedback = "great stuff";
+    this.currentCleaner = this.utilityService.getCurrentCleaner();
+   
+    console.log(this.currentCleaner.totalNumCleaningServicesProvided);
+    
+    console.log(((this.currentCleaner.accumulatedRating*this.currentCleaner.totalNumCleaningServicesProvided) + this.jobToEnd.jobRating)/(this.currentCleaner.totalNumCleaningServicesProvided +1));
+    this.currentCleaner.accumulatedRating = ((this.currentCleaner.accumulatedRating*this.currentCleaner.totalNumCleaningServicesProvided) + this.jobToEnd.jobRating)/(this.currentCleaner.totalNumCleaningServicesProvided +1);
+    this.currentCleaner.totalNumCleaningServicesProvided++;
+    this.cleaner = this.currentCleaner
+    this.cleanerService.updateCleaner(this.cleaner).subscribe(
+      response => {
+        this.resultSuccess = true;
+        this.resultError = false;
+        this.message = "Your profile is updated successfully";
+        let editedCleaner: Cleaner = response.cleaner;
+        this.utilityService.setCurrentCleaner(editedCleaner);
+
+      },
+      error => {
+        this.resultError = true;
+        this.resultSuccess = false;
+        this.message = "An error has occurred while updating the product: " + error;
+
+        console.log('********** UpdateProductComponent.ts: ' + error);
+      }
+    )
 
     this.jobService.updateJob(this.jobToEnd).subscribe(
       response => {
