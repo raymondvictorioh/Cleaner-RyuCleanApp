@@ -16,6 +16,7 @@ export class Cleaner {
     gender: GenderEnum;
     fullName: string;
     directMessage: string;
+    
 
     constructor(cleanerId?: number, jobs?: Job[], totalNumCleaningServicesProvided?: number, firstName?: string, lastName?: string, username?: string, password?: string, bankAccountNumber?: string,
         accumulatedRating?: number, gender?: GenderEnum, fullName?: string) {

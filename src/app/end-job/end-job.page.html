@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-input type = "text" placeholder = "My QR Data" [(ngModel)]="qrData"></ion-input>
+    <ion-input type = "text" placeholder = "Please enter the job ID in place of scanning since the cordova does not work." [(ngModel)]="qrData"></ion-input>
   </ion-item>
 
   <ion-button ion-button full icon-left (click)='scanCode()' ><ion-icon name ='qr-scanner'></ion-icon>Scan Code</ion-button> 

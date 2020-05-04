@@ -25,6 +25,8 @@ export class EndJobPage implements OnInit {
   message: string;
   currentCleaner: Cleaner;
   cleaner: Cleaner;
+  jobIdToEnd:number;
+
 
   constructor(private barcodeScanner: BarcodeScanner,
     private jobService: JobService,
@@ -86,8 +88,9 @@ export class EndJobPage implements OnInit {
 
   endJobTemp(event){
    
-    
-    this.jobService.getJobByJobId(2).subscribe(
+    console.log(this.qrData);
+    this.jobIdToEnd = Number(this.qrData);
+    this.jobService.getJobByJobId(this.jobIdToEnd).subscribe(
       response => {
         this.jobToEnd = response.job;
       }, error => {
@@ -104,9 +107,12 @@ export class EndJobPage implements OnInit {
     //console.log(this.currentCleaner.totalNumCleaningServicesProvided);
     
     //console.log(((this.currentCleaner.accumulatedRating*this.currentCleaner.totalNumCleaningServicesProvided) + this.jobToEnd.jobRating)/(this.currentCleaner.totalNumCleaningServicesProvided +1));
+    
     this.currentCleaner.accumulatedRating = this.jobToEnd.jobRating + this.currentCleaner.accumulatedRating;
     this.currentCleaner.totalNumCleaningServicesProvided++;
+    
     this.cleaner = this.currentCleaner
+    
     this.cleanerService.updateCleaner(this.cleaner).subscribe(
       response => {
         this.resultSuccess = true;
