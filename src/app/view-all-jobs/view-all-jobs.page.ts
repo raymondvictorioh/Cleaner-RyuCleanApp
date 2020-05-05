@@ -77,8 +77,8 @@ export class ViewAllJobsPage implements OnInit {
     //console.log(customerName);
     const alert = await this.alertController.create({
       header: 'Job Details',
-      subHeader: 'Comments',
-      message: 'Please leave a rating',
+      subHeader: 'Customer: Ryuto',
+      message: 'Address: : 05-05 NUS SOC NUS Road 191919'
       
     });
 
